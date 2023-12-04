@@ -6,7 +6,8 @@ const { EMAIL_ADDRESS, EMAIL_PASSWORD, FEURL } = require("../utils/config");
 
 
 
-// sign up new user
+// sign up 
+
 usersRouter.post("/user/signup", async (req, res) => {
   
   try {
