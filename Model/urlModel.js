@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-// defining a schema
+// define a schema
 
 const urlSchema = new mongoose.Schema({
   longurl: {
