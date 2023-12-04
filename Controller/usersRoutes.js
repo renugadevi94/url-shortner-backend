@@ -70,19 +70,17 @@ usersRouter.post("/user/signup", async (req, res) => {
 
 // Creating link for sedding authorise link to email
 
-usersRouter.patch("/user/confirm/:id", async (req, res) => {
+ usersRouter.patch("/user/confirm/:id", async (req, res) => {
   try {
     const resetToken = req.params.id;
     const matchedUser = await User.findOne({ resetToken });
-    if (matchedUser === null || matchedUser.resetToken === "") {
-      return res
-        .status(400)
-        .json({ Err: "user not exists or reset link expired" });
+    if (!matchedUser) {
+      return res.status(400).json({ Err: "user not exists or reset link expired" });
     }
     matchedUser.verified = true;
-    await User.findByIdAndUpdate(matchedUser.id, matchedUser);
+    await matchedUser.save(); // Use save to trigger the middleware
     res.status(201).json({
-      message: `${matchedUser.username} account verfied has beed changed sucessfully kindly visit login page`,
+      message: `${matchedUser.username} account verified and updated successfully. Kindly visit the login page.`,
     });
   } catch (error) {
     return res.status(400).json({ Err: "user not exists or link expired" });
