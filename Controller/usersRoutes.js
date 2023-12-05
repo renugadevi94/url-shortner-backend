@@ -55,6 +55,8 @@ usersRouter.post("/user/signup", async (req, res) => {
         text: link,
       });
     };
+  
+  
 
     sendMail();
 
