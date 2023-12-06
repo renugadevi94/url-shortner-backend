@@ -7,8 +7,11 @@ const { EMAIL_ADDRESS, EMAIL_PASSWORD, FEURL } = require("../utils/config");
 
 
 // sign up new user
+
 usersRouter.post("/user/signup", async (req, res) => {
+
   //preparing object to store in collection
+
   try {
     const { username, email, password } = new User(req.body);
     if (!username || !email || !password) {
@@ -29,6 +32,7 @@ usersRouter.post("/user/signup", async (req, res) => {
     const link = `${FEURL}/user/confirm/${randomString}`;
 
     // hashed password
+    
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
