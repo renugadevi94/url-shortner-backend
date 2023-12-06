@@ -15,6 +15,5 @@ module.exports = {
   EMAIL_PASSWORD,
   SECRET,
   BEURL,
-  FEURL,
-  
+  FEURL,  
 };
